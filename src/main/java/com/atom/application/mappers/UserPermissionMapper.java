@@ -6,8 +6,9 @@ import com.atom.application.models.UserPermission;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserPermissionMapper {
-    
+public class UserPermissionMapper implements EntityDTOMapper<UserPermission, UserPermissionDTO> {
+
+    @Override
     public UserPermissionDTO mapToDto(UserPermission entity) {
         UserPermissionDTO dto = new UserPermissionDTO();
         dto.setId(entity.getId());
@@ -16,6 +17,7 @@ public class UserPermissionMapper {
         return dto;
     }
 
+    @Override
     public UserPermission mapToEntity(UserPermissionDTO dto) {
         UserPermission entity = new UserPermission();
         entity.setId(dto.getId());
