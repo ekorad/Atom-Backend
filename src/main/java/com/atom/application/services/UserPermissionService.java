@@ -15,10 +15,6 @@ public class UserPermissionService {
     @Autowired
     private UserPermissionRepository repo;
 
-    public UserPermission getPermissionByName(String name) {
-        return repo.findByName(name).orElse(null);
-    }
-
     public List<UserPermission> getAllPermissions() {
         return repo.findAll();
     }

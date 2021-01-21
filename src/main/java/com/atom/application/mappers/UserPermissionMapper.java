@@ -17,6 +17,8 @@ public class UserPermissionMapper implements EntityDTOMapper<UserPermission, Use
         return dto;
     }
 
+    // * entity mapping is not required for user permissions but is added for consistency
+    @Deprecated(forRemoval = true)
     @Override
     public UserPermission mapToEntity(UserPermissionDTO dto) {
         UserPermission entity = new UserPermission();
