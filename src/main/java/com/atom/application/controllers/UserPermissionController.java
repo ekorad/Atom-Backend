@@ -29,12 +29,12 @@ public class UserPermissionController {
         return service.getAllUserPermissions();
     }
 
-    @GetMapping(params = "permissionNames")
+    @GetMapping(params = "names")
     public List<UserPermissionDTO> getAllPermissionsByNames(
-        @RequestParam(name = "permissionNames")
-        @NotEmpty(message = "List of user permission names is mandatory and cannot be empty")
-        List<@NotBlank(message = "User permission name is mandatory and must not contain only whitespace") 
-            @Size(min = 5, max = 50, message = "User permission name must contain between 5 and 50 valid characaters") String> names) {
+        @RequestParam(name = "names", required = true)
+        @NotEmpty(message = "List of requested user permission names is mandatory and cannot be empty")
+        List<@NotBlank(message = "User permission name within list is mandatory and must not contain only whitespace") 
+            @Size(min = 5, max = 50, message = "User permission name within list must contain between 5 and 50 valid characaters") String> names) {
         return service.getAllUserPermissionsByNames(names);
     }
     

@@ -3,6 +3,7 @@ package com.atom.application.error;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
@@ -76,6 +77,13 @@ public class APIErrorHandler extends ResponseEntityExceptionHandler {
         }
 
         APIError apiError = new APIError(HttpStatus.BAD_REQUEST, message, errors);
+        return handleExceptionInternal(ex, apiError, new HttpHeaders(), apiError.getStatus(), request);
+    }
+
+    @ExceptionHandler({ EntityNotFoundException.class })
+    protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex, WebRequest request) {
+        String message = "One ore more entities have not been found using the provided query parameters";
+        APIError apiError = new APIError(HttpStatus.NOT_FOUND, message, ex.getLocalizedMessage());
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), apiError.getStatus(), request);
     }
 

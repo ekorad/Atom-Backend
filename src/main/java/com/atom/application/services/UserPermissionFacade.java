@@ -1,6 +1,5 @@
 package com.atom.application.services;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserPermissionFacade {
-    
+
     @Autowired
     private UserPermissionService service;
     @Autowired
@@ -24,9 +23,9 @@ public class UserPermissionFacade {
         return entities.stream().map(mapper::mapToDto).collect(Collectors.toList());
     }
 
-    public List<UserPermissionDTO> getAllUserPermissionsByNames(Collection<String> names) {
-        List<UserPermission> entities = service.getAllPermissionsByNames(names);
+    public List<UserPermissionDTO> getAllUserPermissionsByNames(List<String> requestedPermissionNames) {
+        List<UserPermission> entities = service.getAllPermissionsByNames(requestedPermissionNames);
         return entities.stream().map(mapper::mapToDto).collect(Collectors.toList());
     }
-    
+
 }

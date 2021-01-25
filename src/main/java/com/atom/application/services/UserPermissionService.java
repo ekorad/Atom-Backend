@@ -1,7 +1,9 @@
 package com.atom.application.services;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityNotFoundException;
 
 import com.atom.application.models.UserPermission;
 import com.atom.application.repos.UserPermissionRepository;
@@ -19,8 +21,15 @@ public class UserPermissionService {
         return repo.findAll();
     }
 
-    public List<UserPermission> getAllPermissionsByNames(Collection<String> names) {
-        return repo.findAllByNames(names);
+    public List<UserPermission> getAllPermissionsByNames(List<String> requestedPermissionNames) {
+        List<UserPermission> storedPermissions = repo.findAllByNames(requestedPermissionNames);
+        List<String> storedPermissionNames = storedPermissions.stream().map(UserPermission::getName).collect(Collectors.toList());
+        requestedPermissionNames.removeAll(storedPermissionNames);
+        if (!requestedPermissionNames.isEmpty()) {
+            String namesString = requestedPermissionNames.stream().map(name -> "'" + name + "'").collect(Collectors.joining(", "));
+            throw new EntityNotFoundException("No user permissions found with names: " + namesString);
+        }
+        return storedPermissions;
     }
 
 }
