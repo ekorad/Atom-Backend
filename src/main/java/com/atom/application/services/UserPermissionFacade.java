@@ -23,9 +23,4 @@ public class UserPermissionFacade {
         return entities.stream().map(mapper::mapToDto).collect(Collectors.toList());
     }
 
-    public List<UserPermissionDTO> getAllUserPermissionsByNames(List<String> requestedPermissionNames) {
-        List<UserPermission> entities = service.getAllPermissionsByNames(requestedPermissionNames);
-        return entities.stream().map(mapper::mapToDto).collect(Collectors.toList());
-    }
-
 }
