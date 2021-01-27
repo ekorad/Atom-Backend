@@ -21,8 +21,8 @@ public class UserPermissionMapper implements EntityDTOMapper<UserPermission, Use
     @Deprecated(forRemoval = true)
     @Override
     public UserPermission mapToEntity(UserPermissionDTO dto) {
+        // * id not set by mapper
         UserPermission entity = new UserPermission();
-        entity.setId(dto.getId());
         entity.setDescription(dto.getDescription());
         entity.setName(dto.getName());
         return entity;
