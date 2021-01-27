@@ -12,7 +12,6 @@ import com.atom.application.services.UserRoleFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +38,7 @@ public class UserRoleController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/add")
-    public void addNewUserRole(@Valid @RequestBody UserRoleDTO newUserRoleDTO, BindingResult bindingResult) {
+    public void addNewUserRole(@Valid @RequestBody UserRoleDTO newUserRoleDTO) {
         service.addNewUserRole(newUserRoleDTO);
     }
 
