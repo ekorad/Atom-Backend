@@ -148,3 +148,13 @@ INSERT INTO roles_permissions(role_id, permission_id) VALUES
 INSERT INTO roles_permissions(role_id, permission_id) VALUES 
     ((SELECT id FROM user_roles WHERE name = 'ADMIN' LIMIT 1), 
         (SELECT id FROM user_permissions WHERE name = 'DELETE_ANY_ROLE' LIMIT 1));
+
+-- initial user data
+INSERT INTO users(first_name, last_name, username, email, `password`, locked, activated, role) VALUES
+    ('Vlad-Gabriel', 'Zahiu', 'ekorad', 'vladzahiu28@gmail.com', 
+    '$2y$10$j/FGrZnTDRBevLv5DaImKu1cyl9KqyQiiA.v/8SQFmupituZ.WbGW', false, true,
+        (SELECT id FROM user_roles WHERE name = 'ADMIN'));
+INSERT INTO users(first_name, last_name, username, email, `password`, locked, activated, role) VALUES
+    ('Gogu', 'Leustean', 'goguleustean', 'gogu.leustean@gmail.com', 
+    '$2y$10$LKJJTBYRqIzcfDlYDRIB9uGknnr5eu99y6rTZSEfcVu8ggRfV02rC', false, false,
+        (SELECT id FROM user_roles WHERE name = 'USER'));
