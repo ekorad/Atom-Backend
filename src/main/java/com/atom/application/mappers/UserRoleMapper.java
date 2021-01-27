@@ -29,8 +29,8 @@ public class UserRoleMapper implements EntityDTOMapper<UserRole, UserRoleDTO> {
 
     @Override
     public UserRole mapToEntity(UserRoleDTO dto) {
+        // * id not set by mapper
         UserRole entity = new UserRole();
-        entity.setId(dto.getId());
         entity.setDescription(dto.getDescription());
         entity.setName(dto.getName());
         List<UserPermission> permissions = service
