@@ -103,6 +103,13 @@ public class APIErrorHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, apiError, new HttpHeaders(), apiError.getStatus(), request);
     }
 
+    @ExceptionHandler({ IllegalArgumentException.class })
+    protected ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException ex, WebRequest request) {
+        String message = "Invalid value passed as request parameter";
+        APIError apiError = new APIError(HttpStatus.BAD_REQUEST, message, ex.getLocalizedMessage());
+        return handleExceptionInternal(ex, apiError, new HttpHeaders(), apiError.getStatus(), request);
+    }
+
     @ExceptionHandler({ DataIntegrityViolationException.class })
     protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex,
             WebRequest request) {
