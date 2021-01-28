@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * <b>Entity representation of user permissions.</b>
  * <p>
  * User permissions determine to what degree can the user interact with the
- * internal database and its contents. *
+ * internal database and its contents.
  * <p>
  * In simpler terms, permissions determine whether the user can, for example,
  * delete the comment of another user, or edit the account of another user.
