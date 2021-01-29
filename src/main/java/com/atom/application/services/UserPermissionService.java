@@ -14,33 +14,51 @@ import org.springframework.stereotype.Service;
 /**
  * <b>User permissions service</b>
  * <p>
- * This service allows for direct interaction with the persisted user
- * permissions through the use of a <code>UserPermissionRepository</code>.
- * @see {@link com.atom.application.repos.UserPermissionRepository UserPermissionRepository}
+ * This service is one layer of abstraction above the user permission repository
+ * (<code>UserPermissionRepository</code>) and provides basic <i>CRUD</i>
+ * (<b>C</b>reate, <b>R</b>ead, <b>U</b>pdate, <b>D</b>elete) functionality for
+ * user permissions through the use of an internal
+ * <code>UserPermissionRepository</code>.
+ * <p>
+ * Besides the functionality offered by the underlying repository, the service
+ * also performs minimal error checking.
+ * <p>
+ * The service does not expose any operations which have no real use for the
+ * application.
+ * 
+ * @see {@link com.atom.application.repos.UserPermissionRepository
+ *      UserPermissionRepository}
  * @see {@link com.atom.application.models.UserPermission UserPermission}
  */
 @Service
 public class UserPermissionService {
 
     /**
-     * The repository used for direct access to the persisted user permission entities.
+     * <b>The user permissions repository</b>
+     * <p>
+     * Used for direct access to the persisted user permissions.
      */
     @Autowired
     private UserPermissionRepository repo;
 
     /**
-     * Retrieves all the existing user permissions.
-     * @return a <code>List</code> of all the existing user permission entities
+     * Retrieves all of the existing user permissions.
+     * 
+     * @return all of the existing user permissions, or an empty <code>List</code>
+     *         if none exist
      */
     public List<UserPermission> getAllPermissions() {
         return repo.findAll();
     }
 
     /**
-     * Retrieves all the existing user permissions according to given list of requested names.
-     * @param requestedPermissionNames - a <code>List</code> of user permission entity names which are being searched for
-     * @return a <code>List</code> of all the existing user permission entities with matching names
-     * @throws EntityNotFoundException if not all of the requested user permission entities can be found
+     * Retrieves all of the user permissions whose names match a given list of
+     * requested names.
+     * 
+     * @param requestedPermissionNames - the names of the requested user permissions
+     * @return the requested user permissions
+     * @throws EntityNotFoundException if not all of the requested user permissions
+     *                                 can be found
      */
     public List<UserPermission> getAllPermissionsByNames(List<String> requestedPermissionNames) {
         List<UserPermission> storedPermissions = repo.findAllByNames(requestedPermissionNames);
@@ -48,9 +66,12 @@ public class UserPermissionService {
                 .collect(Collectors.toList());
         requestedPermissionNames.removeAll(storedPermissionsNames);
         if (!requestedPermissionNames.isEmpty()) {
-            String namesString = requestedPermissionNames.stream().map(name -> "'" + name + "'")
+            String namesNotFoundString = requestedPermissionNames.stream().map(name -> "'" + name + "'")
                     .collect(Collectors.joining(", "));
-            throw new EntityNotFoundException("No user permissions found with names: " + namesString);
+            String excMessage = (requestedPermissionNames.size() == 1) ? ("No user permission found with name: ")
+                    : ("No user permissions found with names: ");
+            excMessage += namesNotFoundString;
+            throw new EntityNotFoundException(excMessage);
         }
         return storedPermissions;
     }

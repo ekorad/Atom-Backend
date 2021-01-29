@@ -12,69 +12,154 @@ import com.atom.application.repos.WebUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * <b>Web users service</b>
+ * <p>
+ * This service is one layer of abstraction above the user role repository
+ * (<code>WebUserRepository</code>) and provides basic <i>CRUD</i>
+ * (<b>C</b>reate, <b>R</b>ead, <b>U</b>pdate, <b>D</b>elete) functionality for
+ * web users through the use of an internal <code>WebUserRepository</code>.
+ * <p>
+ * Besides the functionality offered by the underlying repository, the service
+ * also performs minimal error checking.
+ * <p>
+ * The service does not expose any operations which have no real use for the
+ * application.
+ * 
+ * @see {@link com.atom.application.repos.WebUserRepository WebUserRepository}
+ * @see {@link com.atom.application.models.WebUser WebUser}
+ */
 @Service
 public class WebUserService {
 
+    /**
+     * <b>The web user repository</b>
+     * <p>
+     * Used for direct access to the persisted web users.
+     */
     @Autowired
     private WebUserRepository repo;
 
+    /**
+     * Retrieves all of the existing web users.
+     * 
+     * @return all of the existing web users, or an empty <code>List</code> if none
+     *         exist
+     */
     public List<WebUser> getAllWebUsers() {
         return repo.findAll();
     }
 
+    /**
+     * Retrieves all of the web users whose usernames match a given list of
+     * requested usernames.
+     * 
+     * @param requestedUsernames - the names of the requested web users
+     * @return the requested web users
+     * @throws javax.persistence.EntityNotFoundException if not all of the requested
+     *                                                   web users can be found
+     */
     public List<WebUser> getAllWebUsersByUsernames(List<String> requestedUsernames) {
-        List<WebUser> storedWebUsers = repo.findAllByNames(requestedUsernames);
-        List<String> storedUsernames = storedWebUsers.stream().map(WebUser::getUsername).collect(Collectors.toList());
-        requestedUsernames.removeAll(storedUsernames);
+        List<WebUser> persistedRequestedUsers = repo.findAllByUsernames(requestedUsernames);
+        List<String> persistedRequestedUsernames = persistedRequestedUsers.stream().map(WebUser::getUsername)
+                .collect(Collectors.toList());
+        requestedUsernames.removeAll(persistedRequestedUsernames);
         if (!requestedUsernames.isEmpty()) {
-            String namesString = requestedUsernames.stream().map(name -> "'" + name + "'")
+            String namesNotFoundString = requestedUsernames.stream().map(name -> "'" + name + "'")
                     .collect(Collectors.joining(", "));
-            throw new EntityNotFoundException("No user accounts found with usernames: " + namesString);
+            String excMessage = (requestedUsernames.size() == 1) ? ("No web user found with username: ")
+                    : ("No web users found with usernames: ");
+            excMessage += namesNotFoundString;
+            throw new EntityNotFoundException(excMessage);
         }
-        return storedWebUsers;
+        return persistedRequestedUsers;
     }
 
-    public WebUser getWebUserByUsername(String username) {
-        Optional<WebUser> persistedOpt = repo.findByUsername(username);
-        if (!persistedOpt.isPresent()) {
-            throw new EntityNotFoundException("No user account found with username: '" + username + "'");
+    /**
+     * Retrieves a single web user whose username matches the requested username.
+     * 
+     * @param requestedUsername - the username of the requested web user
+     * @return the requested web user
+     * @throws javax.persistence.EntityNotFoundException if no web user is found for
+     *                                                   the requested username
+     */
+    public WebUser getWebUserByUsername(String requestedUsername) {
+        Optional<WebUser> persistedRequestedUserOpt = repo.findByUsername(requestedUsername);
+        if (!persistedRequestedUserOpt.isPresent()) {
+            throw new EntityNotFoundException("No web user found with username: '" + requestedUsername + "'");
         }
-        WebUser persisted = persistedOpt.get();
-        return persisted;
+        WebUser persistedRequestedUser = persistedRequestedUserOpt.get();
+        return persistedRequestedUser;
     }
 
-    public WebUser getWebUserByEmail(String email) {
-        Optional<WebUser> persistedOpt = repo.findByEmail(email);
-        if (!persistedOpt.isPresent()) {
-            throw new EntityNotFoundException("No user account found with email: '" + email + "'");
+    /**
+     * Retrieves a single web user whose email matches the requested email.
+     * 
+     * @param requestedEmail - the email of the requested web user
+     * @return the requested web user
+     * @throws javax.persistence.EntityNotFoundException if no web user is found for
+     *                                                   the requested email
+     */
+    public WebUser getWebUserByEmail(String requestedEmail) {
+        Optional<WebUser> persistedRequestedUserOpt = repo.findByEmail(requestedEmail);
+        if (!persistedRequestedUserOpt.isPresent()) {
+            throw new EntityNotFoundException("No user account found with email: '" + requestedEmail + "'");
         }
-        WebUser persisted = persistedOpt.get();
-        return persisted;
+        WebUser persistedRequestedUser = persistedRequestedUserOpt.get();
+        return persistedRequestedUser;
     }
 
-    public WebUser addNewWebUser(WebUser user) {
-        return repo.save(user);
+    /**
+     * Allows the persistence of a newly created web user.
+     * 
+     * @param newUser - the web user to be persisted
+     * @return the web user that has been successfully persisted
+     * @throws org.springframework.dao.DataIntegrityViolationException can be caused
+     *                                                                 by
+     *                                                                 {@link org.hibernate.exception.ConstraintViolationException},
+     *                                                                 {@link org.hibernate.PropertyValueException}
+     *                                                                 or
+     *                                                                 {@link org.hibernate.exception.DataException}
+     */
+    public WebUser addNewWebUser(WebUser newUser) {
+        return repo.save(newUser);
     }
 
-    public void removeWebUsers(List<WebUser> users) {
-        repo.deleteInBatch(users);
+    /**
+     * Removes the specified web users.
+     * 
+     * @param requestedUsers - the web users that are requested to be deleted
+     */
+    public void removeWebUsers(List<WebUser> requestedUsers) {
+        repo.deleteInBatch(requestedUsers);
     }
 
-    public WebUser updateWebUser(String existingUsername, WebUser user) {
-        Optional<WebUser> persistedOpt = repo.findByUsername(existingUsername);
-        if (!persistedOpt.isPresent()) {
-            throw new EntityNotFoundException("A user account with username '" + existingUsername + "' does not exist");
+    /**
+     * Updates a single web user.
+     * <p>
+     * The function does not update the ID of the web user.
+     * 
+     * @param existingUsername - the username of the web user that will be updated
+     * @param updatedUser      - the web user that will be used for the update
+     * @return the updated web user
+     * @throws javax.persistence.EntityNotFoundException if the web user requested
+     *                                                   for update cannot be found
+     */
+    public WebUser updateWebUser(String existingUsername, WebUser updatedUser) {
+        Optional<WebUser> oldUserOpt = repo.findByUsername(existingUsername);
+        if (!oldUserOpt.isPresent()) {
+            throw new EntityNotFoundException("Could not find a web user with username: '" + existingUsername + "'");
         }
-        WebUser persisted = persistedOpt.get();
-        persisted.setActivated(user.getActivated());
-        persisted.setEmail(user.getEmail());
-        persisted.setFirstName(user.getFirstName());
-        persisted.setLastName(user.getLastName());
-        persisted.setLocked(user.getLocked());
-        persisted.setPassword(user.getPassword());
-        persisted.setRole(user.getRole());
-        persisted.setUsername(user.getUsername());
-        return repo.save(persisted);
+        WebUser oldUser = oldUserOpt.get();
+        oldUser.setActivated(updatedUser.getActivated());
+        oldUser.setEmail(updatedUser.getEmail());
+        oldUser.setFirstName(updatedUser.getFirstName());
+        oldUser.setLastName(updatedUser.getLastName());
+        oldUser.setLocked(updatedUser.getLocked());
+        oldUser.setPassword(updatedUser.getPassword());
+        oldUser.setRole(updatedUser.getRole());
+        oldUser.setUsername(updatedUser.getUsername());
+        return repo.save(oldUser);
     }
 
 }
