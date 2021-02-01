@@ -1,0 +1,10 @@
++ user permissions:
+    - read-only (get and get all)
+    - hardcoded (cannot be altered in any way by anyone except devs)
+    - many-to-many relationship with user roles (no inverse field needed)
+
++ user_roles
+    - USER, ADMIN and MODERATOR roles are hardcoded and must be readonly (must not be altered in any way by anyone except devs)
+    - user roles are subject to crud operations
+    - many-to-many relationship with user roles
+    - one-to-many relationship with users

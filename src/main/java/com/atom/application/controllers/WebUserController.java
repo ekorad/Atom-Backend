@@ -2,6 +2,7 @@ package com.atom.application.controllers;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class WebUserController {
-    
+
     @Autowired
     private WebUserFacade service;
 
@@ -41,19 +42,48 @@ public class WebUserController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(path = "/remove", params = {"usernames"})
-    public void deleteWebUsers(@RequestParam @NotEmpty(message = "List of user accounts to be deleted is mandatory and cannot be empty") 
-        List<@NotBlank(message = "User account username is mandatory and must not contain only whitespace")
-        @Size(min = 5, max = 50, message = "User account username must contain between 5 and 30 characters") String> usernames) {
+    @DeleteMapping(path = "/remove", params = { "usernames" })
+    public void deleteWebUsers(
+            @RequestParam @NotEmpty(message = "List of user accounts to be deleted is mandatory and cannot be empty") List<@NotBlank(message = "User account username is mandatory and must not contain only whitespace") @Size(min = 5, max = 50, message = "User account username must contain between 5 and 30 characters") String> usernames) {
         service.deleteWebUsersByUsernames(usernames);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping(path = "/update", params = {"username"})
-    public void updateExistingWebUser(@RequestParam @NotBlank(message = "User username is mandatory and cannot contain only whitespace")
-        @Size(min = 5, max = 30, message = "User username must contain between 5 and 30 valid characters") String username,
-        @Valid @RequestBody WebUserDTO editedWebUserDTO) {
+    @PutMapping(path = "/update", params = { "username" })
+    public void updateExistingWebUser(
+            @RequestParam @NotBlank(message = "User username is mandatory and cannot contain only whitespace") @Size(min = 5, max = 30, message = "User username must contain between 5 and 30 valid characters") String username,
+            @Valid @RequestBody WebUserDTO editedWebUserDTO) {
         service.updateExistingWebUser(username, editedWebUserDTO);
     }
 
+    @GetMapping(path = "/check", params = { "username" })
+    public Boolean checkIfUsernameExists(
+            @RequestParam @NotBlank(message = "User username is mandatory and cannot contain only whitespace") @Size(min = 5, max = 30, message = "User username must contain between 5 and 30 valid characters") String username) {
+        Boolean exists = false;
+        try {
+            WebUserDTO user = service.getWebUserByUsername(username);
+            exists = true;
+        } catch (EntityNotFoundException ex) {
+            exists = false;
+        }
+        return exists;
+    }
+
+    @GetMapping(path = "/check", params = { "email" })
+    public Boolean checkIfEmailExists(
+            @RequestParam @NotBlank(message = "User email is mandatory and cannot contain only whitespace") @Size(min = 5, max = 70, message = "User email must contain between 5 and 70 valid characters") String email) {
+        Boolean exists = false;
+        try {
+            WebUserDTO user = service.getWebUserByEmail(email);
+            exists = true;
+        } catch (EntityNotFoundException ex) {
+            exists = false;
+        }
+        return exists;
+    }
+
+    @GetMapping(path = "/free/stuff")
+    public String get() {
+        return "hello world!";
+    }
 }

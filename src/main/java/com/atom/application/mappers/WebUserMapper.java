@@ -31,7 +31,6 @@ public class WebUserMapper implements EntityDTOMapper<WebUser, WebUserDTO> {
 
     @Override
     public WebUser mapToEntity(WebUserDTO dto) {
-        // * id not set by mapper
         WebUser entity = new WebUser();
         entity.setActivated(dto.getActivated());
         entity.setEmail(dto.getEmail());

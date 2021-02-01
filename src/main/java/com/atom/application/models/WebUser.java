@@ -295,7 +295,8 @@ public class WebUser {
      * <p>
      * The function is guaranteed to <b>NOT</b> store the password in raw form. As
      * such, it uses the local password encoder ({@link #PWD_ENCODER
-     * <code>PWD_ENCODER</code>}) to store the encryption of the raw password instead.
+     * <code>PWD_ENCODER</code>}) to store the encryption of the raw password
+     * instead.
      * 
      * @param password - the raw password
      */

@@ -21,7 +21,8 @@ INSERT INTO user_permissions (name, description) VALUES
     ('MODIFY_ANY_ROLE',         'Utilizatorul poate modifica toate rolurile de utilizator'),
     ('DELETE_ANY_ROLE',         'Utilizatorul poate sterge orice rol de utilizator'),
     ('CREATE_NEW_ROLE',         'Utilizatorul poate crea noi roluri de utilizatori'),
-    ('READ_ANY_PERMISSION',     'Utilizatorul poate accesa toate permisiunile de utilizator');
+    ('READ_ANY_PERMISSION',     'Utilizatorul poate accesa toate permisiunile de utilizator'),
+    ('ELEVATED',                'Utilizatorul are drepturi administrative si poate accesa sectiunile de administrare');
 
 -- initial user roles
 -- hardcoded and read-only, cannot be altered by anyone except devs
@@ -52,6 +53,7 @@ INSERT INTO roles_permissions(role_id, permission_id) VALUES
 
 -- initial MODERATOR permissions
 -- hardcoded and read-only, cannot be altered by anyone except devs
+-- MODERATOR has elevated privileges
 INSERT INTO roles_permissions(role_id, permission_id) VALUES 
     ((SELECT id FROM user_roles WHERE name = 'MODERATOR' LIMIT 1), 
         (SELECT id FROM user_permissions WHERE name = 'CREATE_SELF_COMMENTS' LIMIT 1));
@@ -82,9 +84,13 @@ INSERT INTO roles_permissions(role_id, permission_id) VALUES
 INSERT INTO roles_permissions(role_id, permission_id) VALUES 
     ((SELECT id FROM user_roles WHERE name = 'MODERATOR' LIMIT 1), 
         (SELECT id FROM user_permissions WHERE name = 'READ_ANY_USER' LIMIT 1));
+INSERT INTO roles_permissions(role_id, permission_id) VALUES 
+    ((SELECT id FROM user_roles WHERE name = 'MODERATOR' LIMIT 1), 
+        (SELECT id FROM user_permissions WHERE name = 'ELEVATED' LIMIT 1));
 
 -- initial ADMIN permissions
 -- hardcoded and read-only, cannot be altered by anyone except devs
+-- ADMIN has elevated privileges
 INSERT INTO roles_permissions(role_id, permission_id) VALUES 
     ((SELECT id FROM user_roles WHERE name = 'ADMIN' LIMIT 1), 
         (SELECT id FROM user_permissions WHERE name = 'CREATE_SELF_COMMENTS' LIMIT 1));
@@ -148,6 +154,9 @@ INSERT INTO roles_permissions(role_id, permission_id) VALUES
 INSERT INTO roles_permissions(role_id, permission_id) VALUES 
     ((SELECT id FROM user_roles WHERE name = 'ADMIN' LIMIT 1), 
         (SELECT id FROM user_permissions WHERE name = 'DELETE_ANY_ROLE' LIMIT 1));
+INSERT INTO roles_permissions(role_id, permission_id) VALUES 
+    ((SELECT id FROM user_roles WHERE name = 'ADMIN' LIMIT 1), 
+        (SELECT id FROM user_permissions WHERE name = 'ELEVATED' LIMIT 1));
 
 -- initial user data
 INSERT INTO users(first_name, last_name, username, email, `password`, locked, activated, role) VALUES

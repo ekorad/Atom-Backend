@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * <b>Handler for exceptions produced by the APIs</b>
+ */
 @ControllerAdvice
 public class APIErrorHandler extends ResponseEntityExceptionHandler {
 

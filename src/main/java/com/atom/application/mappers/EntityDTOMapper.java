@@ -1,8 +1,16 @@
 package com.atom.application.mappers;
 
 /**
- * This is the interface implemented by classes which deal with entity to DTO
- * mapping.
+ * An interface implemented by mapper objects which perform mappings between
+ * entities and DTOs.
+ * <p>
+ * Entity to DTO mappings are performed by <i>facade</i> services through the
+ * use of a mapper object.
+ * <p>
+ * The mappings are performed in order to minimize the quantity of information
+ * sent over individual HTTP transfers. As such, <i>DTOs</i> (<b>D</b>ata
+ * <b>T</b>ransfer <b>O</b>bjects) store a minimal set of properties from the
+ * corresponding entity type.
  * 
  * @param <E> the type of the entity
  * @param <D> the type of the DTO
@@ -10,18 +18,18 @@ package com.atom.application.mappers;
 public interface EntityDTOMapper<E, D> {
 
     /**
-     * This function maps a given entity to a corresponding DTO
+     * Maps a given entity to the corresponding DTO.
      * 
      * @param entity - the entity to be mapped to a DTO
-     * @return the DTO
+     * @return the resulting DTO
      */
     public D mapToDto(E entity);
 
     /**
-     * This function maps a given DTO to a corresponding entity
+     * Maps a given DTO to the corresponding entity
      * 
      * @param dto - the DTO to be mapped to an entity
-     * @return the entity
+     * @return the resulting entity
      */
     public E mapToEntity(D dto);
 

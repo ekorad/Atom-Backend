@@ -45,7 +45,7 @@ public class UserRoleController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping(path = "/update", params = {"name"})
     public void updateExistingUserRole(@RequestParam @NotBlank(message = "User role name is mandatory and must not contain only whitespace")
-        @Size(min = 5, max = 50, message = "User role name must contain between 5 and 50 characters") String name,
+        @Size(min = 4, max = 50, message = "User role name must contain between 4 and 50 characters") String name,
         @Valid @RequestBody UserRoleDTO editedUserRoleDTO) {
         service.updateExistingUserRole(name, editedUserRoleDTO);
     }
@@ -54,7 +54,7 @@ public class UserRoleController {
     @DeleteMapping(path = "/remove", params = {"names"})
     public void deleteUserRoles(@RequestParam @NotEmpty(message = "List of user roles to be deleted is mandatory and cannot be empty") 
         List<@NotBlank(message = "User role name is mandatory and must not contain only whitespace")
-        @Size(min = 5, max = 50, message = "User role name must contain between 5 and 50 characters") String> names) {
+        @Size(min = 4, max = 50, message = "User role name must contain between 4 and 50 characters") String> names) {
         service.deleteUserRolesByName(names);
     }
 
