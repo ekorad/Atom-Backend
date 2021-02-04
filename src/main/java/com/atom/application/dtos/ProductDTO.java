@@ -14,7 +14,7 @@ public class ProductDTO {
     @NotBlank(message = "Price is mandatory and cannot contain only whitespace")
     private Integer price;
     @NotBlank(message = "Image is mandatory")
-    private String image;
+    private byte[] image;
 
     public Long getId() {
         return id;
@@ -34,12 +34,13 @@ public class ProductDTO {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
+    public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
     
     public Integer gePrice() {
         return price;

@@ -170,6 +170,6 @@
 
 -- initial products data
 INSERT INTO products(product_name , description, image, price)
-    VALUES ('calculator', 'bun','imagine','50');
+    VALUES ('calculator', 'bun','[B@2ac273d3',50);
 INSERT INTO products(product_name, description, image, price) 
-    VALUES ('laptopAsus', 'rau','imagine','100');
+    VALUES ('laptopAsus', 'rau','[B@2ac273d3',100);
