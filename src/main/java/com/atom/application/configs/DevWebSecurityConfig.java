@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -89,9 +88,10 @@ public class DevWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and().authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/users/authenticate", "/users/add").permitAll()
-            .antMatchers(HttpMethod.GET, "/users/check*").permitAll()
-            .antMatchers("/users/**").authenticated()
+            // .antMatchers(HttpMethod.POST, "/users/authenticate", "/users/add").permitAll()
+            // .antMatchers(HttpMethod.GET, "/users/check*").permitAll()
+            // .antMatchers("/users/**").authenticated()
+            .anyRequest().permitAll()
         .and().exceptionHandling()
             .authenticationEntryPoint(unauthorizedEntryPoint)
         .and()
