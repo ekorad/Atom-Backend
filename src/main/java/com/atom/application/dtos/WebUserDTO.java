@@ -1,5 +1,7 @@
 package com.atom.application.dtos;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -158,6 +160,8 @@ public class WebUserDTO {
      */
     private Boolean activated;
 
+    private List<String> addresses;
+
     /**
      * Retrieives the <code>id</code> of the web user.
      * <p>
@@ -252,6 +256,14 @@ public class WebUserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
     }
 
 }
