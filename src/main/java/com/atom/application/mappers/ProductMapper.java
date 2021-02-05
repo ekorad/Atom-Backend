@@ -12,7 +12,8 @@ public class ProductMapper implements EntityDTOMapper<Product, ProductDTO>{
        dto.setProductName(entity.getProductName());
        dto.setDescription(entity.getDescription());
        dto.setImage(entity.getImage());
-       dto.setPrice(entity.gePrice());
+       dto.setNewPrice(entity.getNewPrice());
+       dto.setOldPrice(entity.getOldPrice());
         return dto;
     }
 
@@ -22,7 +23,8 @@ public class ProductMapper implements EntityDTOMapper<Product, ProductDTO>{
         entity.setProductName(dto.getProductName());
         entity.setDescription(dto.getDescription());
         entity.setImage(dto.getImage());
-        entity.setPrice(dto.gePrice());
+        entity.setNewPrice(dto.getNewPrice());
+        entity.setOldPrice(dto.getOldPrice());
         return entity;
     }
 

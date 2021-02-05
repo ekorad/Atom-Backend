@@ -1,12 +1,16 @@
 
 package com.atom.application.models;
 
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +19,23 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 255)
     private String productName;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private Integer price;
+    private int oldPrice;
+    @Column(nullable = false)
+    private int newPrice;
     @Column(nullable = false)
     private byte[] image;
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Review> reviews = new ArrayList<>();
+
+
 
     public Long getId() {
         return id;
@@ -50,10 +63,31 @@ public class Product {
 		this.image = image;
 	}
     
-    public Integer gePrice() {
-        return price;
+   
+
+    public List<Review> getReviews() {
+        return reviews;
     }
-    public void setPrice(Integer price) {
-        this.price = price;
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
+
+    public int getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(int oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+
+    public int getNewPrice() {
+        return newPrice;
+    }
+
+    public void setNewPrice(int newPrice) {
+        this.newPrice = newPrice;
+    }
+
+    
 }

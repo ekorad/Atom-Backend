@@ -168,8 +168,18 @@
 --     '$2y$10$LKJJTBYRqIzcfDlYDRIB9uGknnr5eu99y6rTZSEfcVu8ggRfV02rC', false, false,
 --         (SELECT id FROM user_roles WHERE name = 'USER'));
 
+-- INSERT INTO review(review , grade )
+--     VALUES ('caltlator f bun', 4);
+
+
 -- initial products data
-INSERT INTO products(product_name , description, image, price)
-    VALUES ('calculator', 'bun','[B@2ac273d3',50);
-INSERT INTO products(product_name, description, image, price) 
-    VALUES ('laptopAsus', 'rau','[B@2ac273d3',100);
+INSERT INTO products(product_name , description, image, old_Price, new_Price )
+    VALUES ('calculator', 'bun','[B@2ac273d3',50,50);
+INSERT INTO products(product_name, description, image, old_Price, new_Price) 
+    VALUES ('laptopAsus', 'rau','[B@2ac273d3',50,5);
+    
+
+--     INSERT INTO products_reviews VALUES (
+--         (SELECT id from products WHERE product_name='laptopAsus' LIMIT 1) ,
+--         (SELECT id from review WHERE review='caltlator f bun' LIMIT 1)
+--     );
