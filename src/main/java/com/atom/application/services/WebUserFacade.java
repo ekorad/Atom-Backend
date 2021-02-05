@@ -8,6 +8,7 @@ import com.atom.application.mappers.WebUserMapper;
 import com.atom.application.models.WebUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -46,6 +47,16 @@ public class WebUserFacade {
     public void updateExistingWebUser(String existingUsername, WebUserDTO editedWebUserDTO) {
         WebUser entity = mapper.mapToEntity(editedWebUserDTO);
         service.updateWebUser(existingUsername, entity);
+    }
+
+    public WebUserDTO getWebUserByUsernameSelf(String username) {
+        String currentUserUsername = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!currentUserUsername.equals(username)) {
+            throw new IllegalArgumentException("Requested user is not currently logged in");
+        }
+        WebUserDTO dto = getWebUserByUsername(username);
+        dto.setPassword("PROTECTED");
+        return dto;
     }
 
 }

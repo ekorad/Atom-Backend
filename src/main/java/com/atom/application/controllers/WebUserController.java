@@ -9,10 +9,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.atom.application.dtos.WebUserDTO;
+import com.atom.application.models.WebUser;
 import com.atom.application.services.WebUserFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,8 +84,9 @@ public class WebUserController {
         return exists;
     }
 
-    @GetMapping(path = "/free/stuff")
-    public String get() {
-        return "hello world!";
+    @GetMapping(params = { "username" })
+    public WebUserDTO getUserSelf(
+            @NotBlank(message = "Requested user username is mandatory and cannot contain only whitespace") @Size(min = 5, max = 30, message = "Requested user username must contain between 5 and 30 valid characters") @RequestParam String username) {
+        return service.getWebUserByUsernameSelf(username);
     }
 }

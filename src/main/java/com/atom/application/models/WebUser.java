@@ -1,7 +1,12 @@
 package com.atom.application.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -128,6 +133,11 @@ public class WebUser {
      */
     @Column(nullable = false)
     private Boolean activated = false;
+
+    @ElementCollection
+    @CollectionTable(name = "user_adresses", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "address")
+    private List<String> addresses = new ArrayList<>();
 
     /**
      * <b>The user role associated with the user's account</b>
@@ -374,6 +384,14 @@ public class WebUser {
      */
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
     }
 
 }
