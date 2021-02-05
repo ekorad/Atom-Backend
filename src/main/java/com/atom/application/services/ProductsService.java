@@ -1,5 +1,6 @@
 package com.atom.application.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,14 +27,7 @@ public class ProductsService {
         return repo.findAll();
     }
 
-/**
-     * Retrieves a single web user whose username matches the requested username.
-     * 
-     * @param requestedUsername - the username of the requested web user
-     * @return the requested web user
-     * @throws javax.persistence.EntityNotFoundException if no web user is found for
-     *                                                   the requested username
-     */
+
     public Product getProductByProductName(String requestedProductName) {
         Optional<Product> persistedRequestedProductOpt = repo.findByProductName(requestedProductName);
         if (!persistedRequestedProductOpt.isPresent()) {
@@ -41,6 +35,37 @@ public class ProductsService {
         }
         Product persistedRequestedProduct = persistedRequestedProductOpt.get();
         return persistedRequestedProduct;
+    }
+
+    public Product addNewProduct(Product newProduct) {
+        return repo.save(newProduct);
+    }
+
+    public Optional<Product> getProductById(Long id) {
+       
+        Optional<Product> p = repo.findById(id);
+        
+        return p;
+    }
+
+    public List<Optional<Product>> getProductsById(List<String> ids) {
+       
+        List<Optional<Product>> products = new ArrayList<Optional<Product>>();
+
+        List<Long> longIds = new ArrayList();
+
+        for (String stringId : ids) {
+            longIds.add(Long.valueOf(stringId));
+        }
+
+        for (Long productId : longIds) {
+            Optional<Product> p = repo.findById(productId);
+            products.add(p);
+        }
+
+        
+        
+        return products;
     }
 
 }
