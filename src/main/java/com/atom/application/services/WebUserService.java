@@ -159,6 +159,7 @@ public class WebUserService {
         oldUser.setPassword(updatedUser.getPassword());
         oldUser.setRole(updatedUser.getRole());
         oldUser.setUsername(updatedUser.getUsername());
+        oldUser.setAddresses(updatedUser.getAddresses());
         return repo.save(oldUser);
     }
 
