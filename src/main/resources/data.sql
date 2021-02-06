@@ -168,6 +168,10 @@ INSERT INTO users(first_name, last_name, username, email, `password`, locked, ac
     '$2y$10$LKJJTBYRqIzcfDlYDRIB9uGknnr5eu99y6rTZSEfcVu8ggRfV02rC', false, false,
         (SELECT id FROM user_roles WHERE name = 'USER'));
 
+-- INSERT INTO review(review , grade )
+--     VALUES ('caltlator f bun', 4);
+
+
 -- initial products data
 INSERT INTO products(product_name , description, image, price)
     VALUES ('calculator', 'bun','[B@2ac273d3',50);

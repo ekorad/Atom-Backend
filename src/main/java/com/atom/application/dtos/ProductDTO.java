@@ -12,7 +12,9 @@ public class ProductDTO {
     @Size(min = 2, max = 90, message = "Description must contain between 2 and 30 valid characters")
     private String description;
     @NotBlank(message = "Price is mandatory and cannot contain only whitespace")
-    private Integer price;
+    private int oldPrice;
+    @NotBlank(message = "Price is mandatory and cannot contain only whitespace")
+    private int newPrice;
     @NotBlank(message = "Image is mandatory")
     private byte[] image;
 
@@ -42,10 +44,16 @@ public class ProductDTO {
 		this.image = image;
 	}
     
-    public Integer gePrice() {
-        return price;
+    public int getOldPrice() {
+        return oldPrice;
     }
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setOldPrice(int oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+    public int getNewPrice() {
+        return newPrice;
+    }
+    public void setNewPrice(int newPrice) {
+        this.newPrice = newPrice;
     }
 }
