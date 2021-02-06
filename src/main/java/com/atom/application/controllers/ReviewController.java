@@ -28,7 +28,7 @@ public class ReviewController {
 
 
     @PostMapping("/add")
-    public void addNewProduct(@Valid @RequestBody Review newReview) {
+    public void addNewReview(@Valid @RequestBody Review newReview) {
 
         Review reviewToBeAdded = new Review();
         reviewToBeAdded.setGrade(newReview.getGrade()); 

@@ -62,9 +62,6 @@ public class ProductsService {
             Optional<Product> p = repo.findById(productId);
             products.add(p);
         }
-
-        
-        
         return products;
     }
 

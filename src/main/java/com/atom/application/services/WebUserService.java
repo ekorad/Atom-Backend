@@ -162,4 +162,11 @@ public class WebUserService {
         return repo.save(oldUser);
     }
 
+    //get user by id
+    public Optional<WebUser> getUserById(Long id) {
+        return repo.findById(id);
+    }
+
+	
+
 }
