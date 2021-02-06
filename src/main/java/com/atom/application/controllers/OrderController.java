@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import com.atom.application.dtos.DTOComm;
 import com.atom.application.models.Product;
 import com.atom.application.models.WebUser;
-import com.atom.application.services.CommandService;
+import com.atom.application.services.OrderService;
 import com.atom.application.services.ProductsService;
 import com.atom.application.services.WebUserService;
 
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/commands")
-public class CommandController {
+@RequestMapping("/orders")
+public class OrderController {
 
     // @Autowired
     // private CommandService commandService;

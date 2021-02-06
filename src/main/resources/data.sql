@@ -173,31 +173,31 @@ INSERT INTO users(first_name, last_name, username, email, `password`, locked, ac
 
 
 -- initial products data
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator', 'bun','[B@2ac273d3',50);
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptopAsus', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator1', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptopAsus1', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator2', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptofeafearerapAsus2', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculatfeafeaor3', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptopAsus3', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator4', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptopAsus4', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator5', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptoperarearearearereaAsus5', 'rau','[B@2ac273d3','100');
-INSERT INTO products(product_name , description, image, price)
+INSERT INTO products(product_name , description, image, new_price)
     VALUES ('calculator6', 'bun','[B@2ac273d3','50');
-INSERT INTO products(product_name, description, image, price) 
+INSERT INTO products(product_name, description, image, new_price) 
     VALUES ('laptopAsus6', 'rau','[B@2ac273d3','100');
