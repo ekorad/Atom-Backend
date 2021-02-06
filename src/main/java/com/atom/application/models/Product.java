@@ -24,9 +24,9 @@ public class Product {
     @Column(nullable = false)
     private String description;
     @Column(nullable = true)
-    private int oldPrice;
+    private Integer oldPrice;
     @Column(nullable = false)
-    private int newPrice;
+    private Integer newPrice;
     @Column(nullable = false)
     private byte[] image;
     @OneToMany(
@@ -73,19 +73,19 @@ public class Product {
         this.reviews = reviews;
     }
 
-    public int getOldPrice() {
+    public Integer getOldPrice() {
         return oldPrice;
     }
 
-    public void setOldPrice(int oldPrice) {
+    public void setOldPrice(Integer oldPrice) {
         this.oldPrice = oldPrice;
     }
 
-    public int getNewPrice() {
+    public Integer getNewPrice() {
         return newPrice;
     }
 
-    public void setNewPrice(int newPrice) {
+    public void setNewPrice(Integer newPrice) {
         this.newPrice = newPrice;
     }
 
