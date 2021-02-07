@@ -407,4 +407,13 @@ public class WebUser {
         this.phoneNumbers = phoneNumbers;
     }
 
+    @Override
+    public String toString() {
+        return "WebUser [activated=" + activated + ", addresses=" + addresses + ", email=" + email + ", firstName="
+                + firstName + ", id=" + id + ", lastName=" + lastName + ", locked=" + locked + ", password=" + password
+                + ", role=" + role + ", username=" + username + "]";
+    }
+
+
+    
 }
