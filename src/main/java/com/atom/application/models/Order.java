@@ -29,7 +29,10 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private WebUser user;
+    private DeliveryAddress address;
 
+
+    
     public List<Product> getProducts() {
         return products;
     }
@@ -46,4 +49,18 @@ public class Order {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return "Order [id=" + id + ", products=" + products + ", user=" + user + "]";
+    }
+
+    public DeliveryAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(DeliveryAddress address) {
+        this.address = address;
+    }
+
+    
 }

@@ -17,11 +17,11 @@ public class OrderService {
     private OrderRepository repo;
     
     
-    public List<Order> getAllCommands() {
+    public List<Order> getAllOrders() {
         return repo.findAll();
     }
 
-    public Order addNewCommand(Order newCommand) {
-        return repo.save(newCommand);
+    public Order addNewOrder(Order newOrder) {
+        return repo.save(newOrder);
     }
 }

@@ -394,4 +394,13 @@ public class WebUser {
         this.addresses = addresses;
     }
 
+    @Override
+    public String toString() {
+        return "WebUser [activated=" + activated + ", addresses=" + addresses + ", email=" + email + ", firstName="
+                + firstName + ", id=" + id + ", lastName=" + lastName + ", locked=" + locked + ", password=" + password
+                + ", role=" + role + ", username=" + username + "]";
+    }
+
+
+    
 }

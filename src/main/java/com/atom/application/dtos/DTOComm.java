@@ -5,7 +5,8 @@ public class DTOComm {
         private Long id;
         private String productsIds;
         private String userId;
-        
+		private String code;
+        private String address;
 		public Long getId() {
 			return id;
 		}
@@ -24,6 +25,22 @@ public class DTOComm {
 		}
 		public void setUserId(String userId) {
 			this.userId = userId;
+		}
+
+		public String getCode() {
+			return code;
+		}
+
+		public void setCode(String code) {
+			this.code = code;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
 		}
 
 
