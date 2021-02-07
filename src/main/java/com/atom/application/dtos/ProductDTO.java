@@ -17,6 +17,19 @@ public class ProductDTO {
     private int newPrice;
     @NotBlank(message = "Image is mandatory")
     private byte[] image;
+    @NotBlank(message = "cpu is mandatory and cannot contain only whitespace")
+    @Size(min = 2, max = 90, message = "Description must contain between 2 and 90 valid characters")
+    private String cpu;
+    @NotBlank(message = "motherBoard is mandatory and cannot contain only whitespace")
+    @Size(min = 2, max = 30, message = "Description must contain between 2 and 30 valid characters")
+    private String motherBoard;
+    @NotBlank(message = "ram is mandatory and cannot contain only whitespace")
+    @Size(min = 2, max = 30, message = "Description must contain between 2 and 30 valid characters")
+    private String ram;
+    @NotBlank(message = "gpu is mandatory and cannot contain only whitespace")
+    @Size(min = 2, max = 30, message = "Description must contain between 2 and 30 valid characters")
+    private String gpu;
+
 
     public Long getId() {
         return id;
@@ -56,4 +69,38 @@ public class ProductDTO {
     public void setNewPrice(int newPrice) {
         this.newPrice = newPrice;
     }
+
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getMotherBoard() {
+        return motherBoard;
+    }
+
+    public void setMotherBoard(String motherBoard) {
+        this.motherBoard = motherBoard;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    public String getGpu() {
+        return gpu;
+    }
+
+    public void setGpu(String gpu) {
+        this.gpu = gpu;
+    }
+
+    
 }
