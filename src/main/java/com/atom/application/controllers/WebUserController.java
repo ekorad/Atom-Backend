@@ -1,5 +1,6 @@
 package com.atom.application.controllers;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 
 import com.atom.application.dtos.WebUserDTO;
 import com.atom.application.models.WebUser;
+import com.atom.application.services.PasswordResetRequestService;
 import com.atom.application.services.WebUserFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/users")
@@ -31,6 +34,8 @@ public class WebUserController {
 
     @Autowired
     private WebUserFacade service;
+    @Autowired
+    private PasswordResetRequestService passResetService;
 
     @GetMapping
     public List<WebUserDTO> getAllWebUsers() {
@@ -88,5 +93,16 @@ public class WebUserController {
     public WebUserDTO getUserSelf(
             @NotBlank(message = "Requested user username is mandatory and cannot contain only whitespace") @Size(min = 5, max = 30, message = "Requested user username must contain between 5 and 30 valid characters") @RequestParam String username) {
         return service.getWebUserByUsernameSelf(username);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(path = "/pass-reset-request", params = { "username" })
+    public void requestResetByUsername(@RequestParam String username) {
+        try {
+            passResetService.requestPasswordResetByUsername(username);
+        } catch (NoSuchAlgorithmException exc) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "No such algorithm found for message digest", exc);
+        }
     }
 }
