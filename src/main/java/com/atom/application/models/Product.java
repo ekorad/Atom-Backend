@@ -32,6 +32,16 @@ public class Product {
     private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
+    @Column(nullable = false)
+    private String cpu;
+    @Column(nullable = false)
+    private String motherBoard;
+    @Column(nullable = false)
+    private String ram;
+    @Column(nullable = false)
+    private String gpu;
+
+
 
     public Long getId() {
         return id;
@@ -95,6 +105,40 @@ public class Product {
                 + ", newPrice=" + newPrice + ", oldPrice=" + oldPrice + ", productName=" + productName + ", reviews="
                 + reviews + "]";
     }
+
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getMotherBoard() {
+        return motherBoard;
+    }
+
+    public void setMotherBoard(String motherBoard) {
+        this.motherBoard = motherBoard;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    public String getGpu() {
+        return gpu;
+    }
+
+    public void setGpu(String gpu) {
+        this.gpu = gpu;
+    }
+
+   
 
     
 }

@@ -14,6 +14,10 @@ public class ProductMapper implements EntityDTOMapper<Product, ProductDTO>{
        dto.setImage(entity.getImage());
        dto.setNewPrice(entity.getNewPrice());
        dto.setOldPrice(entity.getOldPrice());
+       dto.setGpu(entity.getGpu());
+       dto.setMotherBoard(entity.getMotherBoard());
+       dto.setRam(entity.getRam());
+       dto.setCpu(entity.getCpu());
         return dto;
     }
 
@@ -25,6 +29,10 @@ public class ProductMapper implements EntityDTOMapper<Product, ProductDTO>{
         entity.setImage(dto.getImage());
         entity.setNewPrice(dto.getNewPrice());
         entity.setOldPrice(dto.getOldPrice());
+        entity.setRam(dto.getRam());
+        entity.setGpu(dto.getGpu());
+        entity.setMotherBoard(dto.getMotherBoard());
+        entity.setCpu(dto.getCpu());
         return entity;
     }
 
