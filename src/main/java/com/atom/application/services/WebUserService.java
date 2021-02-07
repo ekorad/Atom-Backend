@@ -160,6 +160,7 @@ public class WebUserService {
         oldUser.setRole(updatedUser.getRole());
         oldUser.setUsername(updatedUser.getUsername());
         oldUser.setAddresses(updatedUser.getAddresses());
+        oldUser.setPhoneNumbers(updatedUser.getPhoneNumbers());
         return repo.save(oldUser);
     }
 

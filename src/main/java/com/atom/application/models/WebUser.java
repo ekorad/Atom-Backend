@@ -139,6 +139,11 @@ public class WebUser {
     @Column(name = "address")
     private List<String> addresses = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name = "user_phone_numbers", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "phone_number")
+    private List<String> phoneNumbers = new ArrayList<>();
+
     /**
      * <b>The user role associated with the user's account</b>
      * <p>
@@ -392,6 +397,14 @@ public class WebUser {
 
     public void setAddresses(List<String> addresses) {
         this.addresses = addresses;
+    }
+
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
 }

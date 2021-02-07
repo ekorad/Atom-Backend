@@ -162,6 +162,8 @@ public class WebUserDTO {
 
     private List<String> addresses;
 
+    private List<String> phoneNumbers;
+
     /**
      * Retrieives the <code>id</code> of the web user.
      * <p>
@@ -264,6 +266,14 @@ public class WebUserDTO {
 
     public void setAddresses(List<String> addresses) {
         this.addresses = addresses;
+    }
+
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
 }

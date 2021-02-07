@@ -27,6 +27,7 @@ public class WebUserMapper implements EntityDTOMapper<WebUser, WebUserDTO> {
         dto.setRole(entity.getRole().getName());
         dto.setUsername(entity.getUsername());
         dto.setAddresses(entity.getAddresses());
+        dto.setPhoneNumbers(entity.getPhoneNumbers());
         return dto;
     }
 
@@ -43,6 +44,7 @@ public class WebUserMapper implements EntityDTOMapper<WebUser, WebUserDTO> {
         UserRole role = roleService.getUserRoleByName(dto.getRole());
         entity.setRole(role);
         entity.setAddresses(dto.getAddresses());
+        entity.setPhoneNumbers(dto.getPhoneNumbers());
         return entity;
     }
 
