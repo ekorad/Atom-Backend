@@ -65,4 +65,36 @@ public class ProductsService {
         return products;
     }
 
+    public Product updateProduct(String existingProductName,Product updatedroduct) {
+        
+        Product existingProductDb=  getProductByProductName(existingProductName);
+
+        existingProductDb.setCpu(updatedroduct.getCpu());
+        existingProductDb.setDescription(updatedroduct.getDescription());
+        existingProductDb.setGpu(updatedroduct.getGpu());
+        existingProductDb.setMotherBoard(updatedroduct.getMotherBoard());
+        existingProductDb.setProductName(updatedroduct.getProductName());
+        existingProductDb.setNewPrice(updatedroduct.getNewPrice());
+        existingProductDb.setOldPrice(updatedroduct.getOldPrice());
+        existingProductDb.setRam(updatedroduct.getRam());
+        //i do not want to update reviews
+        //existingProductDb.setReviews(updatedroduct.getReviews());
+
+        return repo.save(existingProductDb);
+    }
+
+    public void deleteProducts(List<String>  idsProductsToBeDeleted) {
+        List<Product> products = new ArrayList<Product>();
+        List<Long> longIds = new ArrayList();
+        
+        for (String stringId : idsProductsToBeDeleted) {
+            longIds.add(Long.valueOf(stringId));
+        }
+        for (Long productId : longIds) {
+            Optional<Product> p = repo.findById(productId);
+            products.add(p.get());
+        }
+        repo.deleteInBatch(products);
+    }
+
 }
