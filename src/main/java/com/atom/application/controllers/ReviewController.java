@@ -33,10 +33,11 @@ public class ReviewController {
         Review reviewToBeAdded = new Review();
         reviewToBeAdded.setGrade(newReview.getGrade()); 
         reviewToBeAdded.setReview(newReview.getReview());
+        reviewToBeAdded.setDate(newReview.getDate());
 
        Optional<Product> optionalProduct = serviceProduct.getProductById(newReview.getProductId());
     
-System.out.println(newReview.getProductId()+"ia id ul");
+// System.out.println(newReview.getProductId()+"ia id ul");
 // System.out.println(serviceProduct.getProductById(1l)+"ce da aici");
 // System.out.println(serviceProduct.getProductById(newReview.getProductId())+"ce da aici");
 

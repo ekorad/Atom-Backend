@@ -28,8 +28,6 @@ public class Product {
     private Integer oldPrice;
     @Column(nullable = false)
     private Integer newPrice;
-    @Column(nullable = false)
-    private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
     @Column(nullable = false)
@@ -40,8 +38,6 @@ public class Product {
     private String ram;
     @Column(nullable = false)
     private String gpu;
-
-
 
     public Long getId() {
         return id;
@@ -65,14 +61,6 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public List<Review> getReviews() {
@@ -101,9 +89,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [description=" + description + ", id=" + id + ", image=" + Arrays.toString(image)
-                + ", newPrice=" + newPrice + ", oldPrice=" + oldPrice + ", productName=" + productName + ", reviews="
-                + reviews + "]";
+        return "Product [description=" + description + ", id=" + id + ", newPrice=" + newPrice + ", oldPrice="
+                + oldPrice + ", productName=" + productName + ", reviews=" + reviews + "]";
     }
 
     public String getCpu() {
@@ -138,7 +125,4 @@ public class Product {
         this.gpu = gpu;
     }
 
-   
-
-    
 }
