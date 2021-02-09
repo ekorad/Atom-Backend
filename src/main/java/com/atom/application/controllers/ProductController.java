@@ -53,11 +53,11 @@ public class ProductController {
 
     }
 
-    @PutMapping(path = "/update", params = { "productName" })
+    @PutMapping(path = "/update", params = { "id" })
     public void updateExistingProd(
-            @RequestParam @NotBlank(message = "product is mandatory and cannot contain only whitespace") @Size(min = 1, max = 30, message = "product must contain between 5 and 30 valid characters") String productName,
+        @Valid @RequestParam Long id,
             @Valid @RequestBody Product editedProduct) {
-        service.updateProduct(productName, editedProduct);
+        service.updateProduct(id, editedProduct);
     }
 
     @DeleteMapping(path = "/delete", params = { "IdsAtOnce" })

@@ -65,9 +65,9 @@ public class ProductsService {
         return products;
     }
 
-    public Product updateProduct(String existingProductName,Product updatedroduct) {
+    public Product updateProduct(long id,Product updatedroduct) {
         
-        Product existingProductDb=  getProductByProductName(existingProductName);
+        Product existingProductDb=  getProductById(id).get();
 
         existingProductDb.setCpu(updatedroduct.getCpu());
         existingProductDb.setDescription(updatedroduct.getDescription());

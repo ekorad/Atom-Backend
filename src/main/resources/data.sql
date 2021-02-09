@@ -173,14 +173,12 @@ INSERT INTO review(review , grade )
 
 
 -- initial products data
-INSERT INTO products(product_name , description, image, new_price,old_price,cpu,gpu,ram,mother_board)
-    VALUES ('calculator', 'bun','[B@2ac273d3',50,100,'cpi','gpi','ram','placa baza');
-INSERT INTO products(product_name, description, image, new_price,old_price,cpu,gpu,ram,mother_board) 
-    VALUES ('laptopAsus', 'rau','[B@2ac273d3','100',100,'cpi','gpi','ram','placa baza');
-INSERT INTO products(product_name , description, image, new_price,old_price,cpu,gpu,ram,mother_board)
-    VALUES ('calculator1', 'bun','[B@2ac273d3','50',100,'cpi','gpi','ram','placa baza');
-INSERT INTO products(product_name, description, image, new_price,old_price,cpu,gpu,ram,mother_board) 
-    VALUES ('laptopAsus1', 'rau','[B@2ac273d3','100',100,'cpi','gpi','ram','placa baza');
+INSERT INTO products(product_name , description, new_price,old_price,cpu,gpu,ram,mother_board)
+    VALUES ('calculator', 'bun',50,100,'cpi','gpi','ram','placa baza');
+INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('laptopAsus', 'rau',100,100,'cpi','gpi','ram','placa baza');
+INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('laptopAsus1', 'rau',100,100,'cpi','gpi','ram','placa baza');
 -- INSERT INTO products(product_name , description, image, new_price)
 --     VALUES ('calculator2', 'bun','[B@2ac273d3','50');
 -- INSERT INTO products(product_name, description, image, new_price) 
