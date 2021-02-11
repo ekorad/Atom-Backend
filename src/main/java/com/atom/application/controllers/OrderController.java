@@ -17,9 +17,13 @@ import com.atom.application.services.ProductsService;
 import com.atom.application.services.WebUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,8 +39,6 @@ public class OrderController {
 
     @PostMapping("/add")
     public void addNewProduct(@Valid @RequestBody DTOComm commandToBeAdded) {
-
-        //WebUser user = webUserService.getUserById(Long.parseLong(commandToBeAdded.getUserId())).get();
 
 System.out.println(commandToBeAdded.toString());
         
@@ -65,6 +67,29 @@ System.out.println(commandToBeAdded.toString());
         order.setUser(user);
         //System.out.println(order.toString()+ "order");
         orderService.addNewOrder(order);
+
+    }
+
+    @PutMapping(path = "/update", params = { "id" })
+    public void updateExistingProd(
+        @Valid @RequestParam Long id,
+            @Valid @RequestBody Order editedOrder) {
+                orderService.updateOrder(id, editedOrder);
+    }
+
+    @GetMapping(path = "/ordersByIds", params = { "IdsAtOnce" })
+    public List<Order> getProductByIds(@Valid @RequestParam String IdsAtOnce) {
+        List<String> ids = Arrays.asList(IdsAtOnce.split(","));
+        
+        return orderService.getOrdersById(ids);
+
+    }
+
+    @DeleteMapping(path = "/delete", params = { "IdsAtOnce" })
+    public void deleteProductByIds(@Valid @RequestParam String IdsAtOnce) {
+        List<String> ids = Arrays.asList(IdsAtOnce.split(","));
+        
+        orderService.deleteOrders(ids);
 
     }
 }

@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -24,8 +26,9 @@ public class Order {
     private Long id;
     @ManyToMany(
         cascade = CascadeType.ALL,
-            fetch  = FetchType.LAZY
+            fetch  = FetchType.EAGER
     )
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Product> products = new ArrayList<>();
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
