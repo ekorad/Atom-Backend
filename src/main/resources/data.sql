@@ -174,28 +174,42 @@ INSERT INTO review(review , grade )
 
 -- initial products data
 INSERT INTO products(product_name , description, new_price,old_price,cpu,gpu,ram,mother_board)
-    VALUES ('calculator', 'bun',50,20,'cpi','gpi','ram','placa baza');
+    VALUES ('Asus', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',41990,1600,'Intel 80486','Matrox M94199','8GB','EmCORE-a10R2');
 INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
-    VALUES ('laptopAsus', 'rau',100,55,'cpi','gpi','ram','placa baza');
+    VALUES ('Asus Rog', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',2999,3200,'Intel Pentium','NVidia GeForce GT710','8GB','EmCORE-a10R2');
 INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
-    VALUES ('laptopAsus1', 'rau',100,120,'cpi','gpi','ram','placa baza');
--- INSERT INTO products(product_name , description, image, new_price)
---     VALUES ('calculator2', 'bun','[B@2ac273d3','50');
--- INSERT INTO products(product_name, description, image, new_price) 
---     VALUES ('laptofeafearerapAsus2', 'rau','[B@2ac273d3','100');
--- INSERT INTO products(product_name , description, image, new_price)
---     VALUES ('calculatfeafeaor3', 'bun','[B@2ac273d3','50');
--- INSERT INTO products(product_name, description, image, new_price) 
---     VALUES ('laptopAsus3', 'rau','[B@2ac273d3','100');
--- INSERT INTO products(product_name , description, image, new_price)
---     VALUES ('calculator4', 'bun','[B@2ac273d3','50');
--- INSERT INTO products(product_name, description, image, new_price) 
---     VALUES ('laptopAsus4', 'rau','[B@2ac273d3','100');
--- INSERT INTO products(product_name , description, image, new_price)
---     VALUES ('calculator5', 'bun','[B@2ac273d3','50');
--- INSERT INTO products(product_name, description, image, new_price) 
---     VALUES ('laptoperarearearearereaAsus5', 'rau','[B@2ac273d3','100');
--- INSERT INTO products(product_name , description, image, new_price)
---     VALUES ('calculator6', 'bun','[B@2ac273d3','50');
--- INSERT INTO products(product_name, description, image, new_price) 
---     VALUES ('laptopAsus6', 'rau','[B@2ac273d3','100');
+    VALUES ('Huawei', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',2800,3000,'AMD ATHLON','GIGABYTE GeForce GT 710 ','8GB','EmCORE-a10R2');
+INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Huawei', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',3099,3200,'Intel Pentium Pro','GeForce GTX 1600 146','8GB','EmCORE-a10R2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Huawei MateBook', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',3099,3500,'Intel P7','GeForce GTX 1600 146','16GB','EmCORE-i90U2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Huawei MateBook', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',4019,4299,'Intel Core Solo','AMD 217','16GB','EmCORE-i90U2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Asus tuf', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',5199,5300,'Intel Core Duo','GEFORCE RTX™ SERIA 30','16GB','EmCORE-i90U2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Asus tuf', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',6199,6500,'Intel Core 2 Solo','GEFORCE RTX 3090','32GB','EmCORE-i90U2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Acer ASPIRE', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',2300,2500,'Intel Core 2 Duo','AMD 217','32GB','EmCORE-i90U2');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Acer', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',2600,3000,'Intel Core i3','NGeForce GT 26000 20','64GB','EmCORE-a5364');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Apple MacBook', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',2900,3200,'Intel Core i5','GeForce GT 700 42','64GB','EmCORE-a5364');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Apple MacBook', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',3199,3500,'Intel Core i7','GeForce GTX 60000 27','64GB','EmCORE-a5364');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Hp', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',5999,6500,'Intel Atom','GeForce GT 200 4','128GB','EmCORE-a5364');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Hp', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',4199,4500,'Intel Core i5 ','GeForce GTX 1600 146','128GB','EmCORE-i2708');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Hp 10-sda', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',3199,3500,'Intel Core i7','GeForce RTX','256GB','EmCORE-i2708');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Hp 10-pc', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',1800,2000,'Intel Core i7','Sapphire Radeon RX 570 PULSE','256GB','EmCORE-i2708');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Lenovo', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',3200,3500,'Intel Core i9','GIGABYTE GeForce GT 710','512GB','EmCORE-a55E1');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Gaming Lenovo', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',4599,5000,'Intel Core i9','NVidia GeForce GT710','512GB','EmCORE-a55E1');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Gaming Lenovo', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',4100,4500,'AMD ATHLON','Palit GeForce GT 1030','1TB','EmCORE-i2305');
+    INSERT INTO products(product_name, description, new_price,old_price,cpu,gpu,ram,mother_board) 
+    VALUES ('Gaming Lenovo', 'Conceput pentru a se potrivi nevoilor profesionistului modern pentru productivitate oricand si oriunde, acest laptop este unul dintre cele mai subtiri si mai usoare disponibile la aceasta gama de pret.',4199,4300,'Intel Core i3','Matrox M9120','1TB','EmCORE-a10R2');
