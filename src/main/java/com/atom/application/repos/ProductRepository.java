@@ -1,12 +1,11 @@
 package com.atom.application.repos;
 
-
-
 import java.util.Optional;
 
 import com.atom.application.models.Product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     
@@ -20,5 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @return the requested user, wrapped in an <code>Optional</code>
      */
     public Optional<Product> findByProductName(String productName);
+
 
 }

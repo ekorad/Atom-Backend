@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 
 import com.atom.application.models.Product;
 import com.atom.application.services.ProductsService;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -68,4 +66,14 @@ public class ProductController {
 
     }
 
+
+
+    @GetMapping(path = "/produseDiscount", params = { "IdsAtOnce" })
+    public Optional<Product> getProductForDiscount(@Valid @RequestParam String IdsAtOnce) {
+        List<String> ids = Arrays.asList(IdsAtOnce.split(","));
+        
+        return service.getProductsByIdFroDiscount(ids);
+
+    }
+    
 }

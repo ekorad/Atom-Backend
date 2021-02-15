@@ -97,4 +97,39 @@ public class ProductsService {
         repo.deleteInBatch(products);
     }
 
+
+    public Optional <Product> getProductsByIdFroDiscount(List<String> ids) {
+       
+
+        List<Long> longIds = new ArrayList();
+
+        for (String stringId : ids) {
+            longIds.add(Long.valueOf(stringId));
+        }
+
+        
+        int sumatotala=0;
+
+        for (Long productId : longIds) {
+            sumatotala+=  repo.findById(productId).get().getOldPrice();
+            
+        }
+
+        int medie = sumatotala/ids.size();
+        int smaller = -1;
+        Long id=0l;
+        List<Product> products = getAllProducts();
+
+        for (Product product : products) {
+            
+            if(0< medie-product.getOldPrice() &&  medie-product.getOldPrice()< medie-smaller){
+                smaller=product.getOldPrice();
+                id=product.getId();
+                
+            }
+        }
+
+        return repo.findById(id);
+    }
+
 }
