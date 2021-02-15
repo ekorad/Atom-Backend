@@ -111,7 +111,7 @@ public class ProductsService {
         int sumatotala=0;
 
         for (Long productId : longIds) {
-            sumatotala+=  repo.findById(productId).get().getOldPrice();
+            sumatotala+=  repo.findById(productId).get().getNewPrice();
             
         }
 
@@ -122,8 +122,8 @@ public class ProductsService {
 
         for (Product product : products) {
             
-            if(0< medie-product.getOldPrice() &&  medie-product.getOldPrice()< medie-smaller){
-                smaller=product.getOldPrice();
+            if(0< medie-product.getNewPrice() &&  medie-product.getNewPrice()< medie-smaller){
+                smaller=product.getNewPrice();
                 id=product.getId();
                 
             }
